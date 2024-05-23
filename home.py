@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 from function import load_data
+import plotly.express as px
+import plotly.graph_objects as go
 
 
 def app():
@@ -32,3 +34,8 @@ def app():
     # Menampilkan Data Historis Banjir
     st.header("Data Historis Kejadian Banjir")
     st.write(filtered_df_class)
+
+    st.header("Visualisasi Tren untuk Masing-masing Variabel")
+    st.subheader("Tren Kecepatan Angin Kumulatif")
+    fig_iws = px.line(filtered_df_class, x=filtered_df_class.index, y="Iws", title="Tren Kecepatan Angin Kumulatif")
+    st.plotly_chart(fig_iws)
